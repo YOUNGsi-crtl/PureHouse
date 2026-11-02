@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6f3ec">
+<meta name="description" content="云泽璞舍 · 洱海密语：面向入境游客的白族文化多语种解码与沉浸式叙事系统（原型）">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="format-detection" content="telephone=no">
+<title>云泽璞舍 · 洱海密语</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2317253b'/><text x='50' y='69' font-size='54' text-anchor='middle' fill='%23f6f3ec' font-family='serif'>洱</text></svg>">
+</head>
+<body>
+
+<div class="app" id="app">
+
+  <header class="bar">
+    <div>
+      <div class="brand-name" id="brandName">云泽璞舍 · 洱海密语</div>
+      <div class="brand-sub" id="brandSub">多语种文化解码 × 沉浸式叙事</div>
+    </div>
+    <div class="langs" id="langs"></div>
+  </header>
+
+  <main id="view"></main>
+
+  <nav class="tabs">
+    <a href="#/" data-tab="decode"><span class="ico">◎</span>解码</a>
+    <a href="#/h" data-tab="homestay"><span class="ico">🏡</span>民宿</a>
+    <a href="#/t" data-tab="travel"><span class="ico">🧭</span>旅游</a>
+    <a href="#/s" data-tab="story"><span class="ico">☾</span>密语</a>
+    <a href="#/stats" data-tab="stats"><span class="ico">◔</span>看板</a>
+    <a href="#/dm" data-tab="dm"><span class="ico">✦</span>主持</a>
+  </nav>
+
+  <div id="overlay-root"></div>
+
+</div>
+
+<noscript>
+  <p style="padding:20px;font-family:sans-serif">这个原型需要启用 JavaScript。</p>
+</noscript>
+
+<!-- 共享内容层（由 tools/sync.mjs 从 shared/ 复制而来） -->
+<script src="data/knowledge.js"></script>
+<script src="data/story.js"></script>
+<script src="data/i18n.js"></script>
+<script src="data/engine.js"></script>
+<script src="data/showcase.js"></script>
+<script src="data/growth.js"></script>
+
+<!-- 应用逻辑 -->
+<script src="app.js"></script>
+
+</body>
+</html>

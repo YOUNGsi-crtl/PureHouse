@@ -1,0 +1,85 @@
+<!-- 加入我们：合作伙伴招募 -->
+<view class="page">
+
+  <view class="topbar">
+    <view>
+      <view class="brand">{{L.title}}</view>
+      <view class="brand-sub">{{L.lead}}</view>
+    </view>
+    <view class="langs">
+      <view class="lang {{item.on ? 'on' : ''}}"
+            wx:for="{{langs}}" wx:key="key"
+            data-lang="{{item.key}}" bindtap="onLang">{{item.label}}</view>
+    </view>
+  </view>
+
+  <!-- 提交成功态 -->
+  <view class="card" wx:if="{{done}}">
+    <text class="pill jade">{{L.done}}</text>
+    <view class="para mt8">{{L.doneBody}}</view>
+    <view class="row mt16">
+      <view class="btn ghost grow" bindtap="onAgain">{{L.again}}</view>
+    </view>
+  </view>
+
+  <block wx:else>
+    <view class="eyebrow">{{L.tracks}}</view>
+    <view class="jtracks">
+      <view class="jtrack {{pickedTrack === item.id ? 'on' : ''}}"
+            wx:for="{{tracks}}" wx:key="id"
+            data-id="{{item.id}}" bindtap="onTrack">
+        <text class="jt-ico">{{item.emoji}}</text>
+        <view class="jt-body">
+          <view class="jt-name">{{item.name}}</view>
+          <view class="jt-tag">{{item.tag}}</view>
+          <view class="jt-desc">{{item.desc}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="eyebrow">{{L.positions}}</view>
+    <view class="jpos-list">
+      <view class="jpos" wx:for="{{positions}}" wx:key="id">
+        <text class="jp-ico">{{item.emoji}}</text>
+        <view class="grow">
+          <view class="jt-name">{{item.name}}</view>
+          <view class="jt-desc">{{item.req}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="eyebrow">{{L.steps}}</view>
+    <view class="jsteps">
+      <view class="jstep" wx:for="{{steps}}" wx:key="n">
+        <view class="js-n">{{item.n}}</view>
+        <view class="grow">
+          <view class="jt-name">{{item.title}}</view>
+          <view class="jt-desc">{{item.desc}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="card modebox">
+      <view class="mode-title">{{L.mode}}</view>
+      <view class="mode-body">{{modeBody}}</view>
+    </view>
+
+    <view class="eyebrow">{{L.apply}}</view>
+    <view class="para">{{L.applyLead}}</view>
+
+    <view class="applyform">
+      <view class="af-label">{{L.name}}</view>
+      <input class="af-input" value="{{fName}}" placeholder="{{L.namePh}}"
+             bindinput="onInputName" />
+      <view class="af-label">{{L.contact}}</view>
+      <input class="af-input" value="{{fContact}}" placeholder="{{L.contactPh}}"
+             bindinput="onInputContact" />
+      <view class="af-label">{{L.msg}}</view>
+      <textarea class="af-textarea" value="{{fMsg}}" placeholder="{{L.msgPh}}"
+                bindinput="onInputMsg" maxlength="200" />
+      <view class="btn red wide mt16" bindtap="onSubmit">{{L.submit}}</view>
+    </view>
+  </block>
+
+  <view class="footnote">{{contact}}</view>
+</view>

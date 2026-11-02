@@ -1,0 +1,151 @@
+<!-- 剧本：身份 → 找线索 → 抉择 → 结局 -->
+<view class="page">
+
+  <view class="topbar">
+    <view>
+      <view class="brand">{{L.title}}</view>
+      <view class="brand-sub">{{L.sub}}</view>
+    </view>
+    <view class="langs">
+      <view class="lang {{item.on ? 'on' : ''}}"
+            wx:for="{{langs}}" wx:key="key"
+            data-lang="{{item.key}}" bindtap="onLang">{{item.label}}</view>
+    </view>
+  </view>
+
+  <!-- ============ 选身份 ============ -->
+  <block wx:if="{{phase === 'pick'}}">
+    <view class="lead">{{L.lead}}</view>
+    <view class="eyebrow">{{L.pick}}</view>
+
+    <view class="role {{item.id === selected ? 'on' : ''}}"
+          wx:for="{{roles}}" wx:key="id"
+          data-id="{{item.id}}" bindtap="onPick">
+      <view class="av">{{item.initial}}</view>
+      <view class="grow">
+        <view class="rn">{{item.name}}</view>
+        <view class="rt">{{item.tag}}</view>
+        <view class="rd">{{item.desc}}</view>
+      </view>
+    </view>
+
+    <view class="secret mt12" wx:if="{{selected}}">
+      <text class="k">{{L.secret}}</text>
+      <text>{{secret}}</text>
+    </view>
+
+    <view class="btn red wide mt12" wx:if="{{selected}}" bindtap="onStart">{{L.start}}</view>
+  </block>
+
+  <!-- ============ 进行中 ============ -->
+  <block wx:elif="{{phase === 'play'}}">
+    <view class="act-rule">{{L.progress}} · {{found}} / {{need}}</view>
+    <view class="act-title">{{actTitle}}</view>
+
+    <view class="prog" wx:if="{{actNo >= 2}}">
+      <view class="track"><view class="fill" style="width:{{pct}}%"></view></view>
+      <view class="lab">{{found}}/{{need}}</view>
+    </view>
+
+    <view class="para" wx:for="{{actBody}}" wx:key="*this">{{item}}</view>
+
+    <!-- 第二幕：找线索 -->
+    <block wx:if="{{actNo === 2}}">
+      <view class="eyebrow">{{L.progress}}</view>
+      <view class="clues">
+        <view class="clue {{item.found ? 'found' : 'locked'}}"
+              wx:for="{{clues}}" wx:key="code"
+              data-code="{{item.code}}" bindtap="onOpenClue">
+          <text class="ci">{{item.icon}}</text>
+          <view class="cs">{{item.spot}}</view>
+          <view class="cc">{{item.code}}</view>
+        </view>
+      </view>
+
+      <view class="codebar">
+        <input class="in" value="{{code}}" placeholder="{{L.codePh}}"
+               confirm-type="done" bindinput="onCodeInput" bindconfirm="onUnlock" />
+        <view class="go" bindtap="onUnlock">{{L.submit}}</view>
+      </view>
+
+      <view class="btn ghost wide mt8" bindtap="onScan">📷 {{L.scan}}</view>
+      <view class="btn ghost wide mt8" bindtap="onSimulate">{{L.simulate}}</view>
+
+      <view class="btn wide mt16 {{ready ? '' : 'off'}}" bindtap="onNext">
+        {{ready ? L.next : L.needMore}}
+      </view>
+    </block>
+
+    <!-- 第一幕 -->
+    <view class="btn wide mt16" wx:if="{{actNo === 1}}" bindtap="onNext">{{L.next}} →</view>
+
+    <!-- 第三幕：抉择 -->
+    <block wx:if="{{actNo === 3}}">
+      <view class="eyebrow">{{L.decide}}</view>
+      <view class="choice" wx:for="{{choices}}" wx:key="id"
+            data-id="{{item.id}}" bindtap="onChoose">
+        <text class="ci">{{item.icon}}</text>
+        <view class="grow">
+          <view class="cl">{{item.label}}</view>
+          <view class="cs">{{item.sub}}</view>
+        </view>
+      </view>
+    </block>
+
+    <view class="btn ghost mt16" bindtap="onRestart">{{L.restart}}</view>
+  </block>
+
+  <!-- ============ 结局 ============ -->
+  <block wx:else>
+    <view class="ending" wx:if="{{ending}}">
+      <view class="ec">{{ending.code}}</view>
+      <view class="et">{{ending.title}}</view>
+      <view class="ep" wx:for="{{ending.paras}}" wx:key="*this">{{item}}</view>
+      <view class="lesson"><text class="lk">{{L.lesson}}</text>{{ending.lesson}}</view>
+    </view>
+
+    <view class="card">
+      <view class="row between">
+        <view class="pill">{{L.rate}}</view>
+        <view class="pill jade">{{rating ? rating : '—'}} / 5</view>
+      </view>
+      <view class="stars">
+        <text class="star {{rating >= 1 ? 'on' : ''}}" data-n="1" bindtap="onRate">★</text>
+        <text class="star {{rating >= 2 ? 'on' : ''}}" data-n="2" bindtap="onRate">★</text>
+        <text class="star {{rating >= 3 ? 'on' : ''}}" data-n="3" bindtap="onRate">★</text>
+        <text class="star {{rating >= 4 ? 'on' : ''}}" data-n="4" bindtap="onRate">★</text>
+        <text class="star {{rating >= 5 ? 'on' : ''}}" data-n="5" bindtap="onRate">★</text>
+      </view>
+    </view>
+
+    <view class="btn ghost wide" bindtap="onRestart">{{L.restart}}</view>
+    <view class="footnote">{{L.sub}}</view>
+  </block>
+
+  <!-- ============ 线索弹层 ============ -->
+  <view class="mask" wx:if="{{sheet.show}}" bindtap="onCloseSheet">
+    <view class="sheet" catchtap="stop">
+      <view class="grab"></view>
+      <view class="st">{{sheet.icon}} {{sheet.title}}</view>
+
+      <view class="para" wx:if="{{sheet.found}}">{{sheet.body}}</view>
+      <view class="para" wx:else style="color:#8a6a33">🔒 {{L.hint}}：{{sheet.hint}}</view>
+
+      <view class="row">
+        <view class="pill jade">{{sheet.code}}</view>
+        <view class="pill" style="margin-left:12rpx">{{sheet.found ? L.found : L.locked}}</view>
+      </view>
+
+      <block wx:if="{{sheet.kb}}">
+        <view class="eyebrow">{{L.learn}}</view>
+        <view class="obj" style="width:100%;margin:0" bindtap="onOpenKb">
+          <text class="emoji">{{sheet.kb.emoji}}</text>
+          <view class="nm">{{sheet.kb.name}}</view>
+          <view class="sub">{{sheet.kb.summary}}</view>
+        </view>
+      </block>
+
+      <view class="btn ghost wide mt16" bindtap="onCloseSheet">{{L.close}}</view>
+    </view>
+  </view>
+</view>

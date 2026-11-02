@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/story/story",
+    "pages/stats/stats",
+    "pages/dm/dm",
+    "pages/decode/decode",
+    "pages/homestay/homestay",
+    "pages/travel/travel",
+    "pages/join/join",
+    "pages/shop/shop"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#F6F3EC",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "云泽璞舍 · 洱海密语",
+    "backgroundColor": "#F6F3EC",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#7C8899",
+    "selectedColor": "#B13A2E",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "解码" },
+      { "pagePath": "pages/story/story", "text": "密语" },
+      { "pagePath": "pages/stats/stats", "text": "看板" },
+      { "pagePath": "pages/dm/dm", "text": "主持" }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents"
+}

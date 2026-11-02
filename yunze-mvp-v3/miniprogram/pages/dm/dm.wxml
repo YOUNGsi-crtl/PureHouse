@@ -1,0 +1,56 @@
+<!-- 主持台：DM 视角的全局状态与线索推送 -->
+<view class="page">
+
+  <view class="topbar">
+    <view>
+      <view class="brand">{{L.title}}</view>
+      <view class="brand-sub">{{L.lead}}</view>
+    </view>
+    <view class="langs">
+      <view class="lang {{item.on ? 'on' : ''}}"
+            wx:for="{{langs}}" wx:key="key"
+            data-lang="{{item.key}}" bindtap="onLang">{{item.label}}</view>
+    </view>
+  </view>
+
+  <view class="kpis">
+    <view class="kpi">
+      <view class="kv">{{act}}</view>
+      <view class="kl">{{L.actL}}</view>
+    </view>
+    <view class="kpi">
+      <view class="kv" style="font-size:30rpx">{{roleName}}</view>
+      <view class="kl">{{L.roleL}}</view>
+    </view>
+  </view>
+
+  <view class="eyebrow">{{L.cluesL}}</view>
+  <view class="card" wx:for="{{clues}}" wx:key="code" style="padding:22rpx 24rpx">
+    <view class="row between">
+      <view class="row grow">
+        <text style="margin-right:12rpx">{{item.icon}}</text>
+        <text style="font-family:'Songti SC',serif;font-size:26rpx">{{item.spot}}</text>
+        <view class="pill" style="margin-left:12rpx">{{item.code}}</view>
+      </view>
+      <view wx:if="{{item.found}}" class="pill jade">{{L.found}}</view>
+      <view wx:else class="btn sm ghost" data-code="{{item.code}}" bindtap="onPush">{{L.push}}</view>
+    </view>
+  </view>
+
+  <view class="row mt16">
+    <view class="btn ghost grow" style="margin-right:14rpx" bindtap="onReset">{{L.reset}}</view>
+    <view class="btn ghost grow" bindtap="onGoStory">{{L.storyL}} →</view>
+  </view>
+
+  <view class="eyebrow">{{L.log}}</view>
+  <scroll-view scroll-y class="log" style="max-height:360rpx">
+    <block wx:if="{{hasLog}}">
+      <view class="li" wx:for="{{logs}}" wx:key="tm">
+        <text class="tm">{{item.tm}}</text>{{item.line}}
+      </view>
+    </block>
+    <view wx:else class="li">{{L.empty}}</view>
+  </scroll-view>
+
+  <view class="footnote">{{L.note}}</view>
+</view>

@@ -1,0 +1,93 @@
+<!-- 民宿：选房间 -->
+<view class="page">
+
+  <view class="topbar">
+    <view>
+      <view class="brand">{{L.title}}</view>
+      <view class="brand-sub">{{L.lead}}</view>
+    </view>
+    <view class="langs">
+      <view class="lang {{item.on ? 'on' : ''}}"
+            wx:for="{{langs}}" wx:key="key"
+            data-lang="{{item.key}}" bindtap="onLang">{{item.label}}</view>
+    </view>
+  </view>
+
+  <image class="hero" src="/assets/yunze-courtyard.png" mode="aspectFill" />
+
+  <view class="card picked" wx:if="{{selectedName}}">
+    <view class="row between">
+      <view class="grow">
+        <text class="pill jade">{{L.picked}}</text>
+        <text class="nm">{{selectedName}}</text>
+      </view>
+      <view class="btn sm ghost" bindtap="onClear">{{L.selected}} ×</view>
+    </view>
+  </view>
+
+  <view class="eyebrow">{{L.intro}}</view>
+  <view class="para">{{locBody}}</view>
+  <view class="para mt8">{{L.introBody}}</view>
+
+  <view class="eyebrow">{{L.rooms}}</view>
+  <view class="rooms">
+    <view class="room {{item.tone}}" wx:for="{{rooms}}" wx:key="id"
+          data-id="{{item.id}}" bindtap="onRoom">
+      <view class="room-head">
+        <text class="emoji">{{item.emoji}}</text>
+        <view wx:if="{{item.selected}}" class="badge">{{L.selected}}</view>
+      </view>
+      <view class="room-body">
+        <view class="rn">{{item.name}}</view>
+        <view class="rmeta">{{item.view}}</view>
+        <view class="rprice"><text class="num">¥{{item.price}}</text> {{L.perNight}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="eyebrow">{{L.houseRules}}</view>
+  <view class="rules">
+    <view class="rule-item" wx:for="{{rules}}" wx:key="*this">{{item}}</view>
+  </view>
+
+  <!-- 房型详情弹层 -->
+  <view class="mask" wx:if="{{sheet.show}}" bindtap="closeSheet">
+    <view class="sheet" catchtap="stop">
+      <view class="grab"></view>
+      <view class="st"><text class="emoji">{{sheet.emoji}}</text> {{sheet.name}}</view>
+
+      <view class="specs">
+        <view class="spec">
+          <view class="sk">{{L.area}}</view>
+          <view class="sv">{{sheet.area}} ㎡</view>
+        </view>
+        <view class="spec">
+          <view class="sk">{{L.beds}}</view>
+          <view class="sv">{{sheet.beds}}</view>
+        </view>
+        <view class="spec">
+          <view class="sk">{{L.view}}</view>
+          <view class="sv">{{sheet.view}}</view>
+        </view>
+        <view class="spec">
+          <view class="sk">{{L.price}}</view>
+          <view class="sv">¥{{sheet.price}} {{L.perNight}}</view>
+        </view>
+      </view>
+
+      <view class="para mt8">{{sheet.desc}}</view>
+
+      <view class="eyebrow">{{L.amenities}}</view>
+      <view class="pills">
+        <view class="pill" wx:for="{{sheet.amenities}}" wx:key="*this">{{item}}</view>
+      </view>
+
+      <view class="eyebrow">{{L.suitable}}</view>
+      <view class="para">{{sheet.suitable}}</view>
+
+      <view class="btn {{sheet.selected ? 'ghost' : 'red'}} wide mt16" bindtap="onSelect">
+        {{sheet.selected ? L.selected : L.select}}
+      </view>
+    </view>
+  </view>
+</view>

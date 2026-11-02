@@ -1,0 +1,80 @@
+<!-- 旅游：大理本地攻略 -->
+<view class="page">
+
+  <view class="topbar">
+    <view>
+      <view class="brand">{{L.title}}</view>
+      <view class="brand-sub">{{L.lead}}</view>
+    </view>
+    <view class="langs">
+      <view class="lang {{item.on ? 'on' : ''}}"
+            wx:for="{{langs}}" wx:key="key"
+            data-lang="{{item.key}}" bindtap="onLang">{{item.label}}</view>
+    </view>
+  </view>
+
+  <image class="hero" src="/assets/erhai.png" mode="aspectFill" />
+
+  <view class="eyebrow">{{L.routes}}</view>
+  <view class="routes">
+    <view class="route" wx:for="{{routes}}" wx:key="id"
+          data-id="{{item.id}}" bindtap="onRoute">
+      <image wx:if="{{item.photo}}" class="route-photo" src="/assets/{{item.photo}}" mode="aspectFill" />
+      <view wx:else class="route-head"><text class="emoji">{{item.emoji}}</text></view>
+      <view class="route-body">
+        <view class="rt-name"><text class="emoji">{{item.emoji}}</text> {{item.name}}</view>
+        <view class="rt-meta">
+          <text class="pill">{{item.days}} {{L.days}}</text>
+          <text class="pill jade">{{item.level}}</text>
+        </view>
+        <view class="rt-sum">{{item.summary}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="eyebrow">{{L.scenes}}</view>
+  <view class="scenes">
+    <view class="scene" wx:for="{{scenes}}" wx:key="id">
+      <image wx:if="{{item.photo}}" class="scene-photo" src="/assets/{{item.photo}}" mode="aspectFill" />
+      <view wx:else class="scene-emoji">{{item.emoji}}</view>
+      <view class="sc-body">
+        <view class="sc-name">{{item.name}}</view>
+        <view class="sc-desc">{{item.desc}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 行程详情弹层 -->
+  <view class="mask" wx:if="{{sheet.show}}" bindtap="closeSheet">
+    <view class="sheet" catchtap="stop">
+      <view class="grab"></view>
+      <view class="st">{{sheet.name}}</view>
+      <view class="rt-meta">
+        <text class="pill">{{sheet.days}} {{L.days}}</text>
+        <text class="pill jade">{{sheet.level}}</text>
+        <text class="pill gold">{{L.summary}}</text>
+      </view>
+      <view class="para mt8">{{sheet.summary}}</view>
+
+      <view class="eyebrow">{{L.itinerary}}</view>
+      <view class="stops">
+        <view class="stop" wx:for="{{sheet.stops}}" wx:key="place">
+          <view class="stop-day">{{item.dayLabel}}</view>
+          <view class="stop-body">
+            <view class="stop-place">{{item.place}}</view>
+            <view class="para">{{item.desc}}</view>
+            <view class="tip">💡 {{L.tip}}：{{item.tip}}</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="eyebrow">{{L.food}}</view>
+      <view class="facts">
+        <view class="fact" wx:for="{{sheet.food}}" wx:key="*this">{{item}}</view>
+      </view>
+
+      <view class="eyebrow">{{L.note}}</view>
+      <view class="para">{{sheet.note}}</view>
+    </view>
+  </view>
+</view>

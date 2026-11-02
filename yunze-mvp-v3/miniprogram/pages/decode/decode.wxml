@@ -1,0 +1,89 @@
+<!-- 解码结果页：带出处的多语种文化解读 -->
+<view class="page">
+
+  <view class="eyebrow" wx:if="{{query}}">{{L.match}} ·「{{query}}」</view>
+
+  <!-- 低置信度：拒绝编造，只给候选 -->
+  <block wx:if="{{mode === 'low'}}">
+    <view class="card">
+      <view class="pill red">{{lowTitle}}</view>
+      <view class="para mt12">{{lowBody}}</view>
+    </view>
+
+    <block wx:if="{{related.length}}">
+      <view class="eyebrow">{{L.related}}</view>
+      <view class="grid">
+        <view class="obj" wx:for="{{related}}" wx:key="id"
+              data-id="{{item.id}}" bindtap="onRelated">
+          <text class="emoji">{{item.emoji}}</text>
+          <view class="nm">{{item.name}}</view>
+          <view class="sub">{{item.cat}}</view>
+        </view>
+      </view>
+    </block>
+
+    <view class="btn ghost wide mt16" bindtap="onBack">{{L.back}}</view>
+  </block>
+
+  <!-- 命中：正文 -->
+  <block wx:else>
+    <view class="match" wx:if="{{hasPct}}">
+      <view class="pill jade">{{L.match}}</view>
+      <view class="track"><view class="fill" style="width:{{pct}}%"></view></view>
+      <view class="num">{{pct}}%</view>
+    </view>
+
+    <view class="row">
+      <text style="font-size:60rpx;margin-right:22rpx;line-height:1">{{emoji}}</text>
+      <view class="grow">
+        <view class="entry-title">{{title}}</view>
+        <view class="row mt8">
+          <view class="pill">{{cat}}</view>
+          <view class="pill jade" style="margin-left:12rpx">{{id}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="quote mt12">{{summary}}</view>
+
+    <view class="eyebrow">{{L.body}}</view>
+    <view class="para" wx:for="{{paras}}" wx:key="*this">{{item}}</view>
+
+    <block wx:if="{{facts.length}}">
+      <view class="eyebrow">{{L.facts}}</view>
+      <view class="facts">
+        <view class="fact" wx:for="{{facts}}" wx:key="*this">{{item}}</view>
+      </view>
+    </block>
+
+    <block wx:if="{{sources.length}}">
+      <view class="eyebrow">{{L.sources}}</view>
+      <view>
+        <view class="src" wx:for="{{sources}}" wx:key="no">
+          <text class="no">{{item.no}}</text>
+          <text>{{item.label}}</text>
+          <text class="tag {{item.pending ? 'pending' : ''}}">{{item.pending ? L.srcPending : (item.kind === 'ich' ? L.srcIch : L.srcFieldwork)}}</text>
+        </view>
+      </view>
+    </block>
+
+    <view class="expbox" wx:if="{{exp}}">
+      <text class="k">{{L.exp}}</text>
+      <text>{{exp}}</text>
+    </view>
+
+    <block wx:if="{{related.length}}">
+      <view class="eyebrow">{{L.related}}</view>
+      <view class="grid">
+        <view class="obj" wx:for="{{related}}" wx:key="id"
+              data-id="{{item.id}}" bindtap="onRelated">
+          <text class="emoji">{{item.emoji}}</text>
+          <view class="nm">{{item.name}}</view>
+          <view class="sub">{{item.cat}}</view>
+        </view>
+      </view>
+    </block>
+
+    <view class="btn ghost wide mt16" bindtap="onBack">{{L.back}}</view>
+  </block>
+</view>

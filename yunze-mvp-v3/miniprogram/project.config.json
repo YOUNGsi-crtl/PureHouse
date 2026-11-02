@@ -1,0 +1,28 @@
+{
+  "description": "云泽璞舍 · 洱海密语（小程序端）",
+  "packOptions": { "ignore": [], "include": [] },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": false,
+    "newFeature": true,
+    "nodeModules": false,
+    "coverView": true,
+    "showShadowRootInWxmlPanel": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "3.0.0",
+  "appid": "touristappid",
+  "projectname": "yunze-wuhai-miyu",
+  "miniprogramRoot": "./",
+  "condition": {
+    "miniprogram": {
+      "list": [
+        { "name": "解码 · 扎染", "pathName": "pages/decode/decode", "query": "id=K01", "scene": null },
+        { "name": "解码 · 低置信度", "pathName": "pages/decode/decode", "query": "q=%E4%BB%8A%E5%A4%A9%E5%A4%A9%E6%B0%94", "scene": null }
+      ]
+    }
+  }
+}

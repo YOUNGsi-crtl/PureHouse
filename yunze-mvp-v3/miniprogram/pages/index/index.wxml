@@ -1,0 +1,82 @@
+<!-- 首页：文化解码入口 -->
+<view class="page">
+
+  <view class="topbar">
+    <view>
+      <view class="brand">{{L.brand}}</view>
+      <view class="brand-sub">{{L.brandSub}}</view>
+    </view>
+    <view class="langs">
+      <view class="lang {{item.on ? 'on' : ''}}"
+            wx:for="{{langs}}" wx:key="key"
+            data-lang="{{item.key}}" bindtap="onLang">{{item.label}}</view>
+    </view>
+  </view>
+
+  <view class="h1">{{L.hero}}</view>
+  <view class="lead">{{L.lead}}</view>
+
+  <view class="search">
+    <input class="search-in" value="{{q}}" placeholder="{{L.ph}}"
+           confirm-type="search" bindinput="onInput" bindconfirm="onAsk" />
+    <view class="search-btn" bindtap="onAsk">{{L.ask}}</view>
+  </view>
+
+  <view class="eyebrow">{{L.tryLabel}}</view>
+  <view class="chips">
+    <view class="chip" wx:for="{{tries}}" wx:key="*this"
+          data-q="{{item}}" bindtap="onChip">{{item}}</view>
+  </view>
+
+  <view class="eyebrow">{{L.objectsLabel}}</view>
+  <view class="grid">
+    <view class="obj" wx:for="{{objects}}" wx:key="id"
+          data-id="{{item.id}}" bindtap="onObj">
+      <text class="emoji">{{item.emoji}}</text>
+      <view class="nm">{{item.name}}</view>
+      <view class="sub">{{item.cat}}</view>
+    </view>
+  </view>
+
+  <view class="eyebrow">{{L.featHeading}}</view>
+  <view class="feat-grid">
+    <view class="feat feat-stay" bindtap="onHomestay">
+      <image class="feat-img" src="/assets/yunze-courtyard.png" mode="aspectFill" />
+      <view class="feat-mask"></view>
+      <view class="feat-content">
+        <text class="feat-emoji">🏡</text>
+        <view class="feat-title">{{L.featStay}}</view>
+        <view class="feat-sub">{{L.featStaySub}}</view>
+      </view>
+    </view>
+    <view class="feat feat-travel" bindtap="onTravel">
+      <image class="feat-img" src="/assets/erhai.png" mode="aspectFill" />
+      <view class="feat-mask"></view>
+      <view class="feat-content">
+        <text class="feat-emoji">🧭</text>
+        <view class="feat-title">{{L.featTravel}}</view>
+        <view class="feat-sub">{{L.featTravelSub}}</view>
+      </view>
+    </view>
+    <view class="feat feat-shop" bindtap="onShop">
+      <view class="feat-img feat-flat"></view>
+      <view class="feat-mask"></view>
+      <view class="feat-content">
+        <text class="feat-emoji">🎁</text>
+        <view class="feat-title">{{L.featShop}}</view>
+        <view class="feat-sub">{{L.featShopSub}}</view>
+      </view>
+    </view>
+    <view class="feat feat-join" bindtap="onJoin">
+      <view class="feat-img feat-flat"></view>
+      <view class="feat-mask"></view>
+      <view class="feat-content">
+        <text class="feat-emoji">🤝</text>
+        <view class="feat-title">{{L.featJoin}}</view>
+        <view class="feat-sub">{{L.featJoinSub}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="footnote">{{L.notice}}</view>
+</view>

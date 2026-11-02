@@ -1,0 +1,815 @@
+/* ==========================================================================
+   云泽璞舍 · 洱海密语  —  小程序全局样式
+   与 H5 共用同一套视觉语言（白墙 / 青瓦 / 朱红），单位统一用 rpx。
+   ========================================================================== */
+
+page {
+  background: #f6f3ec;
+  color: #17253b;
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 26rpx;
+  line-height: 1.6;
+}
+
+.page {
+  padding: 26rpx 30rpx 60rpx;
+}
+
+/* ---------- 顶栏语种 ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18rpx;
+}
+.brand {
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 30rpx;
+  font-weight: 700;
+  letter-spacing: 1rpx;
+}
+.brand-sub {
+  font-size: 20rpx;
+  color: #7c8899;
+  margin-top: 4rpx;
+}
+.langs {
+  display: flex;
+  background: rgba(23, 37, 59, 0.06);
+  border-radius: 999rpx;
+  padding: 4rpx;
+}
+.lang {
+  font-size: 20rpx;
+  color: #3a4a63;
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+}
+.lang.on {
+  background: #17253b;
+  color: #ffffff;
+}
+
+/* ---------- 排版 ---------- */
+.h1 {
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 48rpx;
+  line-height: 1.38;
+  font-weight: 700;
+  margin-bottom: 16rpx;
+}
+.lead {
+  font-size: 25rpx;
+  line-height: 1.78;
+  color: #3a4a63;
+  margin-bottom: 28rpx;
+}
+.eyebrow {
+  font-size: 20rpx;
+  letter-spacing: 3rpx;
+  color: #7c8899;
+  margin: 34rpx 0 16rpx;
+}
+.act-rule {
+  font-size: 20rpx;
+  letter-spacing: 3rpx;
+  color: #7c8899;
+  margin-bottom: 10rpx;
+}
+.act-title {
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 34rpx;
+  font-weight: 700;
+  margin-bottom: 18rpx;
+}
+.entry-title {
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 34rpx;
+  font-weight: 700;
+  line-height: 1.36;
+}
+.para {
+  font-size: 26rpx;
+  line-height: 1.95;
+  color: #3a4a63;
+  margin-bottom: 18rpx;
+}
+.quote {
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 27rpx;
+  line-height: 1.8;
+  border-left: 4rpx solid #c09a5b;
+  padding-left: 22rpx;
+  margin-bottom: 22rpx;
+}
+.footnote {
+  font-size: 20rpx;
+  line-height: 1.7;
+  color: #a9b2bf;
+  text-align: center;
+  margin-top: 34rpx;
+}
+.rule {
+  height: 1rpx;
+  background: #e4ded2;
+  margin: 28rpx 0;
+}
+
+/* ---------- 卡片 ---------- */
+.card {
+  background: #ffffff;
+  border: 1rpx solid #e4ded2;
+  border-radius: 22rpx;
+  padding: 26rpx;
+  margin-bottom: 16rpx;
+}
+
+.pill {
+  display: inline-block;
+  font-size: 20rpx;
+  padding: 5rpx 15rpx;
+  border-radius: 999rpx;
+  background: rgba(23, 37, 59, 0.06);
+  color: #3a4a63;
+}
+.pill.red { background: rgba(177, 58, 46, 0.1); color: #b13a2e; }
+.pill.jade { background: rgba(47, 107, 94, 0.12); color: #2f6b5e; }
+.pill.gold { background: rgba(192, 154, 91, 0.18); color: #8a6a33; }
+
+/* ---------- 按钮 ---------- */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #17253b;
+  color: #ffffff;
+  font-size: 27rpx;
+  padding: 22rpx 28rpx;
+  border-radius: 18rpx;
+}
+.btn.ghost {
+  background: transparent;
+  color: #17253b;
+  border: 1rpx solid #e4ded2;
+}
+.btn.red { background: #b13a2e; }
+.btn.wide { width: 100%; }
+.btn.sm { padding: 15rpx 22rpx; font-size: 24rpx; border-radius: 14rpx; }
+.btn.off { opacity: 0.38; }
+
+/* ---------- 行 ---------- */
+.row { display: flex; align-items: center; }
+.row.between { justify-content: space-between; }
+.grow { flex: 1; }
+.mt8 { margin-top: 14rpx; }
+.mt12 { margin-top: 22rpx; }
+.mt16 { margin-top: 30rpx; }
+
+/* ---------- 搜索 ---------- */
+.search {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1rpx solid #e4ded2;
+  border-radius: 22rpx;
+  padding: 10rpx 10rpx 10rpx 24rpx;
+  margin-bottom: 8rpx;
+}
+.search-in {
+  flex: 1;
+  font-size: 26rpx;
+  padding: 14rpx 0;
+}
+.search-btn {
+  flex: none;
+  background: #17253b;
+  color: #ffffff;
+  font-size: 25rpx;
+  padding: 16rpx 26rpx;
+  border-radius: 16rpx;
+}
+
+.chips { display: flex; flex-wrap: wrap; }
+.chip {
+  border: 1rpx solid #e4ded2;
+  background: #ffffff;
+  color: #3a4a63;
+  font-size: 23rpx;
+  padding: 14rpx 20rpx;
+  border-radius: 999rpx;
+  margin: 0 12rpx 12rpx 0;
+  line-height: 1.2;
+}
+
+/* ---------- 对象网格 ---------- */
+.grid { display: flex; flex-wrap: wrap; margin: 0 -6rpx; }
+.obj {
+  width: calc(50% - 12rpx);
+  margin: 0 6rpx 12rpx;
+  background: #ffffff;
+  border: 1rpx solid #e4ded2;
+  border-radius: 20rpx;
+  padding: 22rpx 20rpx;
+  box-sizing: border-box;
+}
+.obj .emoji { font-size: 36rpx; line-height: 1; }
+.obj .nm {
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 26rpx;
+  font-weight: 700;
+  margin-top: 14rpx;
+  line-height: 1.3;
+}
+.obj .sub { font-size: 20rpx; color: #7c8899; margin-top: 6rpx; }
+
+/* ---------- 匹配度 ---------- */
+.match { display: flex; align-items: center; margin-bottom: 22rpx; }
+.match .track {
+  flex: 1;
+  height: 10rpx;
+  background: #efe9dd;
+  border-radius: 6rpx;
+  margin: 0 16rpx;
+  overflow: hidden;
+}
+.match .fill { height: 100%; background: #2f6b5e; border-radius: 6rpx; }
+.match .num { font-size: 22rpx; color: #2f6b5e; font-weight: 700; }
+
+/* ---------- 要点 / 出处 ---------- */
+.facts { margin: 0; padding: 0; }
+.fact {
+  position: relative;
+  padding-left: 30rpx;
+  font-size: 25rpx;
+  line-height: 1.8;
+  color: #3a4a63;
+  margin-bottom: 10rpx;
+}
+.fact::before {
+  content: "";
+  position: absolute;
+  left: 6rpx;
+  top: 18rpx;
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  background: #c09a5b;
+}
+.src {
+  font-size: 23rpx;
+  line-height: 1.65;
+  color: #3a4a63;
+  padding: 14rpx 0 14rpx 46rpx;
+  position: relative;
+  border-bottom: 1rpx dashed #efe9dd;
+}
+.src:last-child { border-bottom: 0; }
+.src .no {
+  position: absolute;
+  left: 0;
+  top: 14rpx;
+  font-size: 20rpx;
+  font-weight: 700;
+  color: #2f6b5e;
+}
+.src .tag {
+  font-size: 18rpx;
+  padding: 2rpx 10rpx;
+  border-radius: 8rpx;
+  background: rgba(23, 37, 59, 0.07);
+  color: #7c8899;
+  margin-left: 10rpx;
+}
+.src .tag.pending { background: rgba(192, 154, 91, 0.22); color: #8a6a33; }
+
+.expbox {
+  margin-top: 24rpx;
+  padding: 22rpx 24rpx;
+  border-radius: 18rpx;
+  background: rgba(47, 107, 94, 0.07);
+  border: 1rpx solid rgba(47, 107, 94, 0.16);
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #27554b;
+}
+.expbox .k {
+  display: block;
+  font-size: 19rpx;
+  letter-spacing: 2rpx;
+  color: #2f6b5e;
+  margin-bottom: 8rpx;
+}
+
+/* ---------- 角色 ---------- */
+.role {
+  display: flex;
+  background: #ffffff;
+  border: 1rpx solid #e4ded2;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  margin-bottom: 14rpx;
+}
+.role.on {
+  border-color: #b13a2e;
+  box-shadow: 0 0 0 6rpx rgba(177, 58, 46, 0.1);
+}
+.role .av {
+  flex: none;
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #efe9dd;
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #3a4a63;
+  margin-right: 22rpx;
+}
+.role.on .av { background: #b13a2e; color: #ffffff; }
+.role .rn { font-family: "Songti SC", "SimSun", serif; font-size: 28rpx; font-weight: 700; }
+.role .rt { font-size: 20rpx; color: #7c8899; margin-top: 4rpx; }
+.role .rd { font-size: 23rpx; line-height: 1.65; color: #3a4a63; margin-top: 10rpx; }
+
+.secret {
+  border: 1rpx dashed rgba(177, 58, 46, 0.5);
+  background: rgba(177, 58, 46, 0.05);
+  border-radius: 20rpx;
+  padding: 24rpx;
+  font-size: 24rpx;
+  line-height: 1.75;
+  color: #7d2a20;
+}
+.secret .k {
+  display: block;
+  font-size: 19rpx;
+  letter-spacing: 2rpx;
+  color: #b13a2e;
+  margin-bottom: 8rpx;
+}
+
+/* ---------- 剧本进度 / 线索 ---------- */
+.prog { display: flex; align-items: center; margin: 20rpx 0 8rpx; }
+.prog .track {
+  flex: 1;
+  height: 12rpx;
+  background: #efe9dd;
+  border-radius: 6rpx;
+  overflow: hidden;
+  margin-right: 14rpx;
+}
+.prog .fill { height: 100%; background: #b13a2e; border-radius: 6rpx; }
+.prog .lab { font-size: 22rpx; font-weight: 700; color: #b13a2e; }
+
+.clues { display: flex; flex-wrap: wrap; margin: 0 -6rpx; }
+.clue {
+  width: calc(50% - 12rpx);
+  margin: 0 6rpx 12rpx;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1rpx solid #e4ded2;
+  border-radius: 18rpx;
+  padding: 20rpx;
+}
+.clue.locked { background: #fbf9f4; border-style: dashed; }
+.clue.found { border-color: rgba(47, 107, 94, 0.45); background: rgba(47, 107, 94, 0.05); }
+.clue .ci { font-size: 32rpx; line-height: 1; }
+.clue .cs {
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 25rpx;
+  font-weight: 700;
+  margin-top: 12rpx;
+}
+.clue.locked .cs { color: #7c8899; font-weight: 400; }
+.clue .cc { font-size: 19rpx; color: #7c8899; margin-top: 6rpx; letter-spacing: 1rpx; }
+
+.codebar { display: flex; margin-top: 20rpx; }
+.codebar .in {
+  flex: 1;
+  background: #ffffff;
+  border: 1rpx solid #e4ded2;
+  border-radius: 16rpx;
+  padding: 20rpx 24rpx;
+  font-size: 26rpx;
+  margin-right: 14rpx;
+}
+.codebar .go {
+  flex: none;
+  background: #17253b;
+  color: #ffffff;
+  font-size: 26rpx;
+  padding: 20rpx 30rpx;
+  border-radius: 16rpx;
+}
+
+/* ---------- 分支 ---------- */
+.choice {
+  display: flex;
+  background: #ffffff;
+  border: 1rpx solid #e4ded2;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  margin-bottom: 14rpx;
+}
+.choice .ci { font-size: 34rpx; margin-right: 20rpx; line-height: 1.2; }
+.choice .cl {
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 26rpx;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.choice .cs { font-size: 21rpx; color: #7c8899; margin-top: 6rpx; }
+
+/* ---------- 结局 ---------- */
+.ending {
+  border-radius: 26rpx;
+  padding: 36rpx 30rpx;
+  background: linear-gradient(170deg, #17253b, #24344f 60%, #2b3f5e);
+  color: #f3efe6;
+  margin-bottom: 16rpx;
+}
+.ending .ec {
+  font-size: 19rpx;
+  letter-spacing: 5rpx;
+  color: #c09a5b;
+  margin-bottom: 14rpx;
+}
+.ending .et {
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 34rpx;
+  font-weight: 700;
+  margin-bottom: 16rpx;
+}
+.ending .ep {
+  font-size: 25rpx;
+  line-height: 1.95;
+  color: #dfe4ec;
+  margin-bottom: 14rpx;
+}
+.ending .lesson {
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid rgba(243, 239, 230, 0.22);
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 26rpx;
+  line-height: 1.7;
+  color: #c09a5b;
+}
+.ending .lesson .lk {
+  display: block;
+  font-family: -apple-system, "PingFang SC", sans-serif;
+  font-size: 19rpx;
+  letter-spacing: 3rpx;
+  color: rgba(243, 239, 230, 0.5);
+  margin-bottom: 8rpx;
+}
+
+.stars { display: flex; justify-content: center; margin: 20rpx 0 6rpx; }
+.star {
+  font-size: 48rpx;
+  line-height: 1;
+  color: #d8d2c4;
+  padding: 0 12rpx;
+}
+.star.on { color: #c09a5b; }
+
+/* ---------- KPI / 条形图 / 漏斗 ---------- */
+.kpis { display: flex; flex-wrap: wrap; margin: 0 -6rpx; }
+.kpi {
+  width: calc(50% - 12rpx);
+  margin: 0 6rpx 12rpx;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1rpx solid #e4ded2;
+  border-radius: 20rpx;
+  padding: 24rpx;
+}
+.kpi .kv {
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 44rpx;
+  font-weight: 700;
+  line-height: 1.15;
+}
+.kpi .kl { font-size: 20rpx; color: #7c8899; margin-top: 8rpx; }
+
+.brow { margin-bottom: 20rpx; }
+.brow .bl { display: flex; justify-content: space-between; font-size: 22rpx; color: #3a4a63; margin-bottom: 8rpx; }
+.brow .track { height: 12rpx; background: #efe9dd; border-radius: 6rpx; overflow: hidden; }
+.brow .fill { height: 100%; border-radius: 6rpx; background: #2f6b5e; }
+.brow.alt .fill { background: #b13a2e; }
+
+.funnel { display: flex; align-items: flex-end; height: 150rpx; }
+.fcol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  margin-right: 10rpx;
+}
+.fcol:last-child { margin-right: 0; }
+.fb { width: 100%; background: #2b4a7d; border-radius: 8rpx 8rpx 0 0; }
+.fn { font-size: 20rpx; color: #3a4a63; font-weight: 700; margin-bottom: 8rpx; }
+.fl { font-size: 19rpx; color: #7c8899; margin-top: 8rpx; }
+
+/* ---------- 日志 ---------- */
+.log {
+  background: #fbf9f4;
+  border: 1rpx solid #efe9dd;
+  border-radius: 18rpx;
+  padding: 18rpx 22rpx;
+  max-height: 400rpx;
+  overflow-y: auto;
+}
+.log .li {
+  font-family: Menlo, monospace;
+  font-size: 21rpx;
+  line-height: 1.65;
+  color: #3a4a63;
+  border-bottom: 1rpx dashed #efe9dd;
+  padding: 6rpx 0;
+}
+.log .li:last-child { border-bottom: 0; }
+.log .tm { color: #a9b2bf; margin-right: 10rpx; }
+
+/* ---------- 空态 ---------- */
+.empty { text-align: center; padding: 70rpx 30rpx; color: #7c8899; font-size: 25rpx; line-height: 1.8; }
+.empty .big { font-size: 64rpx; display: block; margin-bottom: 24rpx; opacity: 0.5; }
+
+/* ---------- 遮罩弹层 ---------- */
+.mask {
+  position: fixed;
+  left: 0; right: 0; top: 0; bottom: 0;
+  background: rgba(23, 37, 59, 0.46);
+  display: flex;
+  align-items: flex-end;
+  z-index: 99;
+}
+.sheet {
+  width: 100%;
+  background: #f6f3ec;
+  border-radius: 28rpx 28rpx 0 0;
+  padding: 18rpx 30rpx 50rpx;
+  max-height: 84vh;
+  overflow-y: auto;
+}
+.sheet .grab {
+  width: 68rpx;
+  height: 8rpx;
+  border-radius: 4rpx;
+  background: #d6cfc0;
+  margin: 6rpx auto 24rpx;
+}
+.sheet .st {
+  font-family: "Songti SC", "SimSun", serif;
+  font-size: 32rpx;
+  font-weight: 700;
+  margin-bottom: 12rpx;
+}
+
+/* ===================== 首页入口卡（民宿 / 旅游） ===================== */
+.feat-grid { display: flex; margin: 0 -6rpx 8rpx; }
+.feat {
+  position: relative;
+  width: calc(50% - 12rpx);
+  margin: 0 6rpx 12rpx;
+  height: 210rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.feat-img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.feat-mask {
+  position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+  background: linear-gradient(180deg, rgba(23,37,59,0.04), rgba(23,37,59,0.6));
+}
+.feat-travel .feat-mask { background: linear-gradient(180deg, rgba(47,109,91,0.05), rgba(23,37,59,0.62)); }
+.feat-content {
+  position: absolute; left: 0; bottom: 0; width: 100%;
+  padding: 18rpx 20rpx; box-sizing: border-box; color: #ffffff;
+}
+.feat-emoji { font-size: 34rpx; line-height: 1; }
+.feat-title { font-family: "Songti SC", "SimSun", serif; font-size: 28rpx; font-weight: 700; margin-top: 6rpx; }
+.feat-sub { font-size: 19rpx; opacity: 0.9; margin-top: 2rpx; }
+
+/* ===================== 顶部实景头图 ===================== */
+.hero {
+  width: 100%; height: 260rpx; border-radius: 22rpx;
+  margin-bottom: 20rpx; background: #d9cdae; display: block;
+}
+
+/* ===================== 民宿：已选横幅 ===================== */
+.card.picked { border-color: #2f6d5b; }
+.card.picked .nm { font-family: "Songti SC", "SimSun", serif; font-weight: 700; margin-left: 10rpx; }
+
+/* ===================== 民宿：房型网格 ===================== */
+.rooms { display: flex; flex-wrap: wrap; margin: 0 -6rpx; }
+.room {
+  width: calc(50% - 12rpx);
+  margin: 0 6rpx 12rpx;
+  background: #ffffff;
+  border: 1rpx solid #e4ded2;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.room-head {
+  height: 122rpx;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.room-head .emoji { font-size: 52rpx; }
+.room-body { padding: 16rpx 18rpx 18rpx; }
+.room .rn { font-family: "Songti SC", "SimSun", serif; font-size: 26rpx; font-weight: 700; }
+.room .rmeta { font-size: 20rpx; color: #7c8899; margin-top: 4rpx; }
+.room .rprice { font-size: 22rpx; color: #3a4a63; margin-top: 8rpx; }
+.room .rprice .num { font-family: "Songti SC", "SimSun", serif; font-weight: 700; color: #b13a2e; font-size: 26rpx; }
+.badge {
+  position: absolute; right: 10rpx; top: 10rpx;
+  background: #b13a2e; color: #ffffff; font-size: 18rpx;
+  padding: 4rpx 12rpx; border-radius: 999rpx;
+}
+.tone-blue .room-head { background: linear-gradient(135deg, #bfe0e8, #8fc0c8); }
+.tone-jade .room-head { background: linear-gradient(135deg, #cfe3da, #2f6d5b); }
+.tone-gold .room-head { background: linear-gradient(135deg, #f0dca6, #c9a14a); }
+.tone-green .room-head { background: linear-gradient(135deg, #d6e6c8, #5d8a52); }
+.tone-teal .room-head { background: linear-gradient(135deg, #cfe6e6, #3f8a86); }
+.tone-ink .room-head { background: linear-gradient(135deg, #3a4a63, #17253b); }
+
+/* ===================== 入住须知 ===================== */
+.rule-item {
+  font-size: 24rpx; line-height: 1.7; color: #3a4a63;
+  padding: 10rpx 0 10rpx 30rpx; position: relative;
+  border-bottom: 1rpx dashed #efe9dd;
+}
+.rule-item::before {
+  content: ""; position: absolute; left: 6rpx; top: 20rpx;
+  width: 8rpx; height: 8rpx; border-radius: 50%; background: #c09a5b;
+}
+.rule-item:last-child { border-bottom: 0; }
+
+/* ===================== 弹层：规格 ===================== */
+.specs { display: flex; flex-wrap: wrap; margin: 0 -6rpx; }
+.spec {
+  width: calc(50% - 12rpx); margin: 0 6rpx 12rpx;
+  background: #fbf9f4; border: 1rpx solid #efe9dd; border-radius: 14rpx;
+  padding: 14rpx 16rpx; box-sizing: border-box;
+}
+.spec .sk { font-size: 19rpx; color: #7c8899; letter-spacing: 1rpx; }
+.spec .sv { font-size: 24rpx; color: #17253b; margin-top: 4rpx; }
+.pills { display: flex; flex-wrap: wrap; }
+.pills .pill { margin: 0 10rpx 10rpx 0; }
+
+/* ===================== 旅游：路线列表 ===================== */
+.routes { display: flex; flex-direction: column; }
+.route {
+  background: #ffffff; border: 1rpx solid #e4ded2;
+  border-radius: 20rpx; overflow: hidden; margin-bottom: 14rpx;
+}
+.route-photo { width: 100%; height: 200rpx; display: block; }
+.route-head {
+  height: 122rpx; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #bfe0e8, #2f6d5b);
+}
+.route-head .emoji { font-size: 50rpx; }
+.route-body { padding: 16rpx 20rpx 20rpx; }
+.rt-name { font-family: "Songti SC", "SimSun", serif; font-size: 28rpx; font-weight: 700; }
+.rt-name .emoji { margin-right: 6rpx; }
+.rt-meta { display: flex; flex-wrap: wrap; margin: 10rpx 0; }
+.rt-meta .pill { margin: 0 10rpx 0 0; }
+.rt-sum { font-size: 22rpx; line-height: 1.7; color: #3a4a63; }
+
+/* ===================== 旅游：必看风景 ===================== */
+.scenes { display: flex; flex-wrap: wrap; margin: 0 -6rpx; }
+.scene {
+  width: calc(50% - 12rpx); margin: 0 6rpx 12rpx;
+  background: #ffffff; border: 1rpx solid #e4ded2;
+  border-radius: 18rpx; overflow: hidden; box-sizing: border-box;
+}
+.scene-photo { width: 100%; height: 140rpx; display: block; }
+.scene-emoji {
+  height: 140rpx; display: flex; align-items: center; justify-content: center;
+  font-size: 60rpx; background: linear-gradient(135deg, #fbf9f4, #efe9dd);
+}
+.sc-body { padding: 14rpx 16rpx 16rpx; }
+.sc-name { font-family: "Songti SC", "SimSun", serif; font-size: 25rpx; font-weight: 700; }
+.sc-desc { font-size: 20rpx; line-height: 1.6; color: #7c8899; margin-top: 4rpx; }
+
+/* ===================== 旅游：行程站点 ===================== */
+.stop { display: flex; margin-bottom: 18rpx; }
+.stop-day {
+  flex: none; width: 96rpx;
+  font-family: "Songti SC", "SimSun", serif; font-size: 22rpx; font-weight: 700;
+  color: #2f6d5b; padding-top: 4rpx;
+}
+.stop-body { flex: 1; border-left: 3rpx solid #e4ded2; padding-left: 18rpx; }
+.stop-place { font-family: "Songti SC", "SimSun", serif; font-size: 26rpx; font-weight: 700; margin-bottom: 6rpx; }
+.tip {
+  font-size: 21rpx; line-height: 1.65; color: #8a6a33;
+  background: rgba(192,154,91,0.12); border-radius: 12rpx;
+  padding: 10rpx 14rpx; margin-top: 8rpx;
+}
+
+/* ================= 首页新增入口卡（文创 / 加入我们） ================= */
+.feat-flat { background: #c9a14a; }
+.feat-shop .feat-flat { background: linear-gradient(135deg, #c9a14a, #8a6a33); }
+.feat-join .feat-flat { background: linear-gradient(135deg, #b13a2e, #6d2820); }
+.feat-shop .feat-mask { background: linear-gradient(180deg, rgba(201,161,74,0.05), rgba(90,60,20,0.55)); }
+.feat-join .feat-mask { background: linear-gradient(180deg, rgba(177,58,46,0.05), rgba(60,20,14,0.55)); }
+
+/* ================= 加入我们（Join Us） ================= */
+.jtracks { display: flex; flex-wrap: wrap; margin: 0 -6rpx; }
+.jtrack {
+  width: calc(50% - 12rpx); margin: 6rpx; box-sizing: border-box;
+  display: flex; gap: 14rpx; align-items: flex-start;
+  background: #fff; border: 2rpx solid #e4ded2; border-radius: 24rpx;
+  padding: 22rpx; box-shadow: 0 2rpx 8rpx rgba(23,37,59,0.06);
+}
+.jtrack.on { border-color: #2f6d5b; box-shadow: 0 0 0 4rpx rgba(47,109,91,0.16); }
+.jt-ico { font-size: 40rpx; line-height: 1.2; }
+.jt-body { flex: 1; min-width: 0; }
+.jt-name { font-family: "Songti SC", "SimSun", serif; font-size: 26rpx; font-weight: 700; }
+.jt-tag { font-size: 19rpx; color: #2f6d5b; margin-top: 4rpx; }
+.jt-desc { font-size: 20rpx; line-height: 1.6; color: #6b7889; margin-top: 8rpx; }
+.jpos-list { display: flex; flex-direction: column; }
+.jpos {
+  display: flex; gap: 16rpx; align-items: flex-start;
+  background: #fff; border: 2rpx solid #e4ded2; border-radius: 24rpx;
+  padding: 20rpx 24rpx; margin-bottom: 14rpx;
+}
+.jp-ico { font-size: 36rpx; line-height: 1.3; }
+.jsteps { display: flex; flex-direction: column; }
+.jstep { display: flex; gap: 16rpx; align-items: flex-start; margin-bottom: 18rpx; }
+.js-n {
+  flex: none; width: 48rpx; height: 48rpx; border-radius: 50%;
+  background: #17253b; color: #f6f3ec; font-family: "Songti SC", "SimSun", serif;
+  font-size: 26rpx; font-weight: 700; display: flex; align-items: center; justify-content: center;
+}
+.modebox { background: #fff; border: 2rpx solid #e4ded2; border-radius: 24rpx; padding: 22rpx 26rpx; }
+.mode-title { font-family: "Songti SC", "SimSun", serif; font-size: 26rpx; font-weight: 700; margin-bottom: 8rpx; }
+.mode-body { font-size: 22rpx; line-height: 1.8; color: #6b7889; }
+.applyform { margin-top: 6rpx; }
+.af-label { font-size: 20rpx; color: #7c8899; margin: 20rpx 4rpx 8rpx; letter-spacing: 2rpx; }
+.af-input {
+  background: #fff; border: 2rpx solid #e4ded2; border-radius: 18rpx;
+  padding: 18rpx 24rpx; font-size: 26rpx;
+}
+.af-textarea {
+  background: #fff; border: 2rpx solid #e4ded2; border-radius: 18rpx;
+  padding: 18rpx 24rpx; font-size: 24rpx; width: 100%; box-sizing: border-box;
+  height: 160rpx;
+}
+
+/* ================= 文创商城 ================= */
+.chip.on { background: #17253b; color: #f6f3ec; border-color: #17253b; }
+.goods { display: flex; flex-wrap: wrap; margin: 0 -6rpx; }
+.good {
+  width: calc(50% - 12rpx); margin: 6rpx; box-sizing: border-box;
+  background: #fff; border: 2rpx solid #e4ded2; border-radius: 24rpx;
+  overflow: hidden; box-shadow: 0 2rpx 8rpx rgba(23,37,59,0.06);
+  display: flex; flex-direction: column;
+}
+.gd-head { position: relative; height: 150rpx; display: flex; align-items: center; justify-content: center; }
+.gd-head.tone-blue { background: linear-gradient(135deg, #bfe0e8, #8fc0c8); }
+.gd-head.tone-jade { background: linear-gradient(135deg, #cfe3da, #2f6d5b); }
+.gd-head.tone-gold { background: linear-gradient(135deg, #f0dca6, #c9a14a); }
+.gd-head.tone-red { background: linear-gradient(135deg, #e9b1a7, #b13a2e); }
+.gd-head.tone-ink { background: linear-gradient(135deg, #3a4a63, #17253b); }
+.gd-emoji { font-size: 60rpx; }
+.gd-head .badge {
+  position: absolute; top: 14rpx; right: 14rpx;
+  background: #b13a2e; color: #fff; font-size: 20rpx;
+  border-radius: 999rpx; padding: 4rpx 14rpx; line-height: 1.4;
+}
+.good-body { padding: 16rpx 20rpx 20rpx; flex: 1; display: flex; flex-direction: column; }
+.gd-name { font-family: "Songti SC", "SimSun", serif; font-size: 25rpx; font-weight: 700; }
+.gd-desc { font-size: 19rpx; line-height: 1.55; color: #7c8899; margin-top: 6rpx; flex: 1; }
+.gd-row { display: flex; align-items: center; justify-content: space-between; margin-top: 14rpx; }
+.gd-price { font-size: 20rpx; color: #6b7889; }
+.gd-price .num, .bb-total .num, .bl-qty .num {
+  font-family: "Songti SC", "SimSun", serif; font-weight: 700;
+  color: #b13a2e; font-size: 30rpx;
+}
+.bagbar {
+  position: sticky; bottom: 16rpx; z-index: 5;
+  display: flex; align-items: center; gap: 18rpx;
+  background: #17253b; color: #f6f3ec; border-radius: 26rpx;
+  padding: 22rpx 26rpx; box-shadow: 0 10rpx 30rpx rgba(23,37,59,0.3);
+}
+.bagbar.empty { background: #fff; color: #7c8899; border: 2rpx dashed #e4ded2; box-shadow: none; }
+.bb-ico { font-size: 24rpx; font-weight: 600; }
+.bb-total { font-size: 22rpx; }
+.bb-total .num { color: #d8b25a; font-size: 28rpx; }
+.bb-go { margin-left: auto; font-size: 22rpx; color: #d8b25a; font-weight: 600; }
+.bb-empty { font-size: 21rpx; }
+.bagline { display: flex; align-items: center; gap: 14rpx; padding: 18rpx 0; border-bottom: 2rpx dashed #e4ded2; }
+.bagline:last-of-type { border-bottom: 0; }
+.bl-ico { font-size: 36rpx; }
+.bl-name { flex: 1; min-width: 0; font-size: 23rpx; font-weight: 600; }
+.bl-qty { display: flex; align-items: center; gap: 12rpx; }
+.bl-sum { font-size: 22rpx; color: #6b7889; width: 100rpx; text-align: right; }
+.bl-del { font-size: 32rpx; color: #b13a2e; padding: 0 6rpx; }
+.kv2 { font-size: 23rpx; color: #7c8899; letter-spacing: 2rpx; }

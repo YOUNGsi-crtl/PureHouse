@@ -1,0 +1,62 @@
+<!-- 跨文化洞察看板 -->
+<view class="page">
+
+  <view class="topbar">
+    <view>
+      <view class="brand">{{L.title}}</view>
+      <view class="brand-sub">{{L.lead}}</view>
+    </view>
+    <view class="langs">
+      <view class="lang {{item.on ? 'on' : ''}}"
+            wx:for="{{langs}}" wx:key="key"
+            data-lang="{{item.key}}" bindtap="onLang">{{item.label}}</view>
+    </view>
+  </view>
+
+  <block wx:if="{{empty}}">
+    <view class="empty">
+      <text class="big">📊</text>
+      {{L.emptyTxt}}
+    </view>
+    <view class="btn wide" bindtap="onGoStory">{{L.storyL}} →</view>
+  </block>
+
+  <block wx:else>
+    <view class="kpis">
+      <view class="kpi" wx:for="{{kpis}}" wx:key="l">
+        <view class="kv">{{item.k}}</view>
+        <view class="kl">{{item.l}}</view>
+      </view>
+    </view>
+
+    <block wx:if="{{langsRows.length}}">
+      <view class="eyebrow">{{L.langsL}}</view>
+      <view class="brow" wx:for="{{langsRows}}" wx:key="name">
+        <view class="bl"><text>{{item.name}}</text><text>{{item.count}}</text></view>
+        <view class="track"><view class="fill" style="width:{{item.pct}}%"></view></view>
+      </view>
+    </block>
+
+    <block wx:if="{{heatRows.length}}">
+      <view class="eyebrow">{{L.heatL}}</view>
+      <view class="brow alt" wx:for="{{heatRows}}" wx:key="name">
+        <view class="bl"><text>{{item.name}}</text><text>{{item.count}}</text></view>
+        <view class="track"><view class="fill" style="width:{{item.pct}}%"></view></view>
+      </view>
+    </block>
+
+    <view class="eyebrow">{{L.funnelL}}</view>
+    <view class="funnel">
+      <view class="fcol" wx:for="{{funnel}}" wx:key="label">
+        <view class="fn">{{item.count}}</view>
+        <view class="fb" style="height:{{item.h}}rpx"></view>
+        <view class="fl">{{item.label}}</view>
+      </view>
+    </view>
+
+    <view class="row mt16">
+      <view class="btn ghost grow" style="margin-right:14rpx" bindtap="onReset">{{L.reset}}</view>
+      <view class="btn ghost grow" bindtap="onGoStory">{{L.storyL}} →</view>
+    </view>
+  </block>
+</view>

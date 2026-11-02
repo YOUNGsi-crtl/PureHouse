@@ -1,0 +1,78 @@
+<!-- 文创商城 -->
+<view class="page">
+
+  <view class="topbar">
+    <view>
+      <view class="brand">{{L.title}}</view>
+      <view class="brand-sub">{{L.lead}}</view>
+    </view>
+    <view class="langs">
+      <view class="lang {{item.on ? 'on' : ''}}"
+            wx:for="{{langs}}" wx:key="key"
+            data-lang="{{item.key}}" bindtap="onLang">{{item.label}}</view>
+    </view>
+  </view>
+
+  <view class="chips">
+    <view class="chip {{item.on ? 'on' : ''}}"
+          wx:for="{{cats}}" wx:key="id"
+          data-id="{{item.id}}" bindtap="onCat">{{item.label}}</view>
+  </view>
+
+  <view class="goods">
+    <view class="good" wx:for="{{goods}}" wx:key="id">
+      <view class="gd-head {{item.tone}}">
+        <text class="gd-emoji">{{item.emoji}}</text>
+        <view class="badge" wx:if="{{item.inBag}}">{{item.inBag}}</view>
+      </view>
+      <view class="good-body">
+        <view class="gd-name">{{item.name}}</view>
+        <view class="gd-desc">{{item.desc}}</view>
+        <view class="gd-row">
+          <view class="gd-price"><text class="num">¥{{item.price}}</text> {{L.cny}}</view>
+          <view class="btn sm" data-id="{{item.id}}" bindtap="onAdd">＋ {{L.add}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bagbar {{cartCount ? '' : 'empty'}}" bindtap="onBag">
+    <view class="bb-ico">🧺 {{L.bag}}{{cartCount ? ' · ' + cartCount : ''}}</view>
+    <view class="bb-total" wx:if="{{cartCount}}">{{L.total}} <text class="num">¥{{cartTotal}}</text></view>
+    <view class="bb-empty" wx:else>{{L.bagEmpty}}</view>
+    <view class="bb-go" wx:if="{{cartCount}}">{{L.checkout}} →</view>
+  </view>
+
+  <view class="footnote">{{L.demo}}</view>
+
+  <!-- 购物袋弹层 -->
+  <view class="mask" wx:if="{{sheet.show}}" bindtap="closeSheet">
+    <view class="sheet" catchtap="stop">
+      <view class="grab"></view>
+      <view class="st">🧺 {{L.bag}}</view>
+
+      <view class="bagline" wx:for="{{sheet.items}}" wx:key="id">
+        <text class="bl-ico">{{item.emoji}}</text>
+        <view class="bl-name">{{item.name}}</view>
+        <view class="bl-qty">
+          <view class="btn sm ghost" data-id="{{item.id}}" bindtap="onDec">−</view>
+          <text class="num">{{item.qty}}</text>
+          <view class="btn sm ghost" data-id="{{item.id}}" bindtap="onInc">＋</view>
+        </view>
+        <view class="bl-sum">¥{{item.price * item.qty}}</view>
+        <view class="bl-del" data-id="{{item.id}}" bindtap="onDel">×</view>
+      </view>
+
+      <view class="row between mt16">
+        <view class="kv2">{{L.total}}</view>
+        <view class="gd-price"><text class="num">¥{{sheet.total}}</text></view>
+      </view>
+
+      <view class="btn red wide mt16" bindtap="onCheckout">{{L.checkout}}</view>
+      <view class="row mt8">
+        <view class="btn ghost sm grow" bindtap="onClear">{{L.clear}}</view>
+        <view class="btn ghost sm grow" bindtap="closeSheet">{{L.back}}</view>
+      </view>
+    </view>
+  </view>
+</view>

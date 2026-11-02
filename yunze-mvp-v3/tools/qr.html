@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二维码生成 · 云泽璞舍 · 洱海密语</title>
+<style>
+  :root {
+    --ink: #17253b; --ink2: #3a4a63; --muted: #7c8899;
+    --paper: #f6f3ec; --card: #fff; --line: #e4ded2; --red: #b13a2e; --jade: #2f6b5e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 20px 60px;
+    background: #e8e2d6; color: var(--ink);
+    font: 14px/1.6 -apple-system, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  h1 { font: 700 22px/1.3 "Noto Serif SC", "Songti SC", serif; margin: 0 0 6px; }
+  .sub { color: var(--muted); font-size: 12.5px; margin-bottom: 22px; line-height: 1.75; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; margin-bottom: 16px; }
+  label { display: block; font-size: 12px; color: var(--ink2); font-weight: 600; margin: 0 0 6px; letter-spacing: .02em; }
+  input[type=text], select {
+    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 10px;
+    font: 13px/1.4 inherit; color: var(--ink); background: #fff; outline: 0;
+  }
+  input[type=text]:focus, select:focus { border-color: var(--ink2); }
+  .grid2 { display: grid; grid-template-columns: 1fr 150px; gap: 14px; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 14px; }
+  button {
+    padding: 11px 18px; border-radius: 10px; border: 1px solid var(--ink);
+    background: var(--ink); color: #fff; font: 500 13px/1 inherit; cursor: pointer;
+  }
+  button.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  button:active { transform: scale(.98); }
+  .tabs { display: inline-flex; gap: 3px; background: rgba(23,37,59,.07); border-radius: 999px; padding: 3px; margin-bottom: 18px; }
+  .tabs button { border: 0; background: transparent; color: var(--ink2); border-radius: 999px; padding: 8px 16px; font-size: 12.5px; }
+  .tabs button.on { background: var(--ink); color: #fff; }
+  .out { display: flex; gap: 22px; align-items: flex-start; flex-wrap: wrap; margin-top: 20px; }
+  canvas { border-radius: 10px; background: #fff; border: 1px solid var(--line); max-width: 100%; height: auto; }
+  .hint { font-size: 12px; color: var(--muted); line-height: 1.8; }
+  .batch { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; margin-top: 18px; }
+  .bcard { border: 1px solid var(--line); border-radius: 12px; padding: 12px; text-align: center; background: #fff; }
+  .bcard canvas { border: 0; }
+  .bcode { font: 700 13px/1 ui-monospace, Menlo, monospace; letter-spacing: .06em; margin-top: 8px; color: var(--ink); }
+  .bspot { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
+  .err { color: var(--red); font-size: 12.5px; margin-top: 10px; }
+  .ok { color: var(--jade); font-size: 12.5px; margin-top: 10px; }
+  .tips { font-size: 12.5px; line-height: 1.9; color: var(--ink2); }
+  .tips b { color: var(--ink); }
+  .tips code { background: rgba(23,37,59,.06); padding: 1px 5px; border-radius: 4px; font-size: 11.5px; }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .noprint { display: none !important; }
+    .bcard { break-inside: avoid; border: 1px dashed #999; }
+    .batch { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>二维码生成器</h1>
+  <div class="sub">
+    完全离线运行（已内置 MIT 协议的 qrcode-generator，不联网）。<br>
+    直接双击本文件即可使用，也可以随原型一起提交，作为「现场二维码部署工具」的一部分。
+  </div>
+
+  <div class="tabs noprint">
+    <button data-mode="single" class="on">单个链接</button>
+    <button data-mode="batch">批量线索码</button>
+  </div>
+
+  <!-- ============ 单个 ============ -->
+  <div id="m-single">
+    <div class="card noprint">
+      <div class="grid2">
+        <div>
+          <label>要编码的网址</label>
+          <input type="text" id="url" placeholder="https://xxx.tcloudbaseapp.com/" value="https://example.com/">
+        </div>
+        <div>
+          <label>尺寸（px）</label>
+          <select id="size">
+            <option value="320">320</option>
+            <option value="480" selected>480</option>
+            <option value="720">720</option>
+            <option value="1080">1080</option>
+          </select>
+        </div>
+      </div>
+      <div class="row noprint">
+        <div style="flex:0 0 160px">
+          <label>容错级别</label>
+          <select id="ecc">
+            <option value="L">L（7%）</option>
+            <option value="M" selected>M（15%，推荐）</option>
+            <option value="Q">Q（25%）</option>
+            <option value="H">H（30%）</option>
+          </select>
+        </div>
+        <button id="go">生成</button>
+        <button class="ghost" id="dl">下载 PNG</button>
+      </div>
+      <div class="err" id="err"></div>
+    </div>
+
+    <div class="out">
+      <canvas id="cv" width="480" height="480"></canvas>
+      <div class="hint" style="flex:1;min-width:220px">
+        <b style="color:var(--ink)">怎么用</b><br>
+        1. 把网址换成你部署后的真实地址<br>
+        2. 点「生成」，用手机微信扫一下确认能打开<br>
+        3. 点「下载 PNG」，贴进海报、桌牌、PPT 或评审视频
+        <div class="ok" id="ok"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 批量 ============ -->
+  <div id="m-batch" style="display:none">
+    <div class="card noprint">
+      <label>站点根地址（不带 # 和 ? ）</label>
+      <input type="text" id="base" placeholder="https://xxx.tcloudbaseapp.com/" value="https://example.com/">
+      <div class="row">
+        <button id="gobatch">生成 6 张线索码</button>
+        <button class="ghost" id="print">打印 / 存 PDF</button>
+      </div>
+      <div class="err" id="err2"></div>
+      <div class="tips" style="margin-top:14px">
+        每张码指向 <code>{根地址}#/s/play?clue=YH-0X</code>。把码贴到院子里对应的位置
+        （照壁、晾布架、茶案、灶头、门楼、火塘），玩家扫码即解锁线索——
+        这就是「找线索＝学文化」的现场机制，也是评审视频里最有说服力的一段。
+      </div>
+    </div>
+    <div class="batch" id="batch"></div>
+  </div>
+
+</div>
+
+<script src="vendor/qrcode.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var CLUES = [
+    { code: 'YH-01', spot: '照壁前' },
+    { code: 'YH-02', spot: '晾布架下' },
+    { code: 'YH-03', spot: '茶案旁' },
+    { code: 'YH-04', spot: '灶头' },
+    { code: 'YH-05', spot: '门楼内侧' },
+    { code: 'YH-06', spot: '院心火塘' }
+  ];
+
+  function draw(canvas, text, px, ecc) {
+    var qr = qrcode(0, ecc || 'M');
+    qr.addData(text);
+    qr.make();
+    var count = qr.getModuleCount();
+    var quiet = 4;
+    var scale = Math.max(2, Math.floor(px / (count + quiet * 2)));
+    var side = scale * (count + quiet * 2);
+    canvas.width = side;
+    canvas.height = side;
+    canvas.style.width = Math.min(px, side) + 'px';
+    canvas.style.height = 'auto';
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, side, side);
+    ctx.fillStyle = '#17253b';
+    for (var r = 0; r < count; r++) {
+      for (var c = 0; c < count; c++) {
+        if (qr.isDark(r, c)) {
+          ctx.fillRect((c + quiet) * scale, (r + quiet) * scale, scale, scale);
+        }
+      }
+    }
+    return side;
+  }
+
+  var cv = document.getElementById('cv');
+  var err = document.getElementById('err');
+  var okEl = document.getElementById('ok');
+
+  function gen() {
+    var url = document.getElementById('url').value.trim();
+    var px = parseInt(document.getElementById('size').value, 10);
+    var ecc = document.getElementById('ecc').value;
+    err.textContent = '';
+    okEl.textContent = '';
+    if (!url) { err.textContent = '请先填入网址'; return; }
+    try {
+      var side = draw(cv, url, px, ecc);
+      okEl.textContent = '已生成 ' + side + '×' + side + 'px（含 4 格静区）';
+    } catch (e) {
+      err.textContent = '生成失败：' + (e && e.message ? e.message : '数据过长或格式错误');
+    }
+  }
+
+  document.getElementById('go').addEventListener('click', gen);
+
+  document.getElementById('dl').addEventListener('click', function () {
+    try {
+      var a = document.createElement('a');
+      a.href = cv.toDataURL('image/png');
+      a.download = 'qrcode-' + Date.now() + '.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch (e) { err.textContent = '下载失败：' + e.message; }
+  });
+
+  /* 批量 */
+  document.getElementById('gobatch').addEventListener('click', function () {
+    var base = document.getElementById('base').value.trim();
+    var err2 = document.getElementById('err2');
+    var wrap = document.getElementById('batch');
+    err2.textContent = '';
+    wrap.innerHTML = '';
+    if (!base) { err2.textContent = '请先填入站点根地址'; return; }
+    if (base.indexOf('#') >= 0) { err2.textContent = '根地址不要带 # 片段'; return; }
+    if (base.slice(-1) !== '/') base += '/';
+
+    CLUES.forEach(function (c) {
+      var link = base + '#/s/play?clue=' + c.code;
+      var card = document.createElement('div');
+      card.className = 'bcard';
+      var canvas = document.createElement('canvas');
+      card.appendChild(canvas);
+      var code = document.createElement('div');
+      code.className = 'bcode';
+      code.textContent = c.code;
+      var spot = document.createElement('div');
+      spot.className = 'bspot';
+      spot.textContent = c.spot;
+      card.appendChild(code);
+      card.appendChild(spot);
+      wrap.appendChild(card);
+      try {
+        draw(canvas, link, 260, 'M');
+      } catch (e) {
+        err2.textContent = '有一张生成失败：' + e.message;
+      }
+    });
+  });
+
+  document.getElementById('print').addEventListener('click', function () { window.print(); });
+
+  /* 模式切换 */
+  var tabs = document.querySelectorAll('.tabs button');
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].addEventListener('click', function (ev) {
+      var mode = ev.currentTarget.getAttribute('data-mode');
+      for (var j = 0; j < tabs.length; j++) tabs[j].classList.remove('on');
+      ev.currentTarget.classList.add('on');
+      document.getElementById('m-single').style.display = mode === 'single' ? '' : 'none';
+      document.getElementById('m-batch').style.display = mode === 'batch' ? '' : 'none';
+    });
+  }
+
+  /* 支持 ?u=https://... 预填 */
+  try {
+    var m = location.search.match(/[?&]u=([^&]+)/);
+    if (m) {
+      var u = decodeURIComponent(m[1]);
+      document.getElementById('url').value = u;
+      document.getElementById('base').value = u.split('#')[0];
+    }
+  } catch (e) {}
+
+  gen();
+})();
+</script>
+</body>
+</html>
